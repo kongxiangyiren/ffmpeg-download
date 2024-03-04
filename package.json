@@ -4,18 +4,18 @@
     "prepare": "npm run clean && tsc"
   },
   "devDependencies": {
-    "@types/node": "^16.18.46",
-    "rimraf": "^5.0.1",
-    "typescript": "^5.2.2"
+    "@types/node": "^20.11.24",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
-    "axios": "^1.5.0"
+    "axios": "^1.6.7"
   },
   "directories": {
     "example": "example"
   },
   "name": "alemon-ffmpeg",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./dist/index.js",
   "types": "./types/index.d.ts",
   "license": "MIT",
