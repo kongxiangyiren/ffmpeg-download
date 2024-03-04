@@ -9,14 +9,20 @@ function ffmpegDownload(): Promise<Boolean> {
     let ffmpeg = (await exe('ffmpeg -version').catch(() => '')) as string;
 
     if (!ffmpeg) {
+      if (process.platform === 'android') {
+        console.warn(
+          '如果你是termux用户, 请自行安装ffmpeg, 否则无法使用音视频功能',
+          '请运行命令: pkg install ffmpeg -y'
+        );
+        return reject(false);
+      }
       const ffmpegPath = join(
         homedir(),
         '.cache',
         'ffmpeg',
         `ffmpeg${process.platform === 'win32' ? '.exe' : ''}`
       );
-      const platform =
-        process.platform == 'android' ? 'linux' : process.platform;
+      const platform = process.platform;
       if (!existsSync(ffmpegPath)) {
         console.log('开始下载ffmpeg');
         mkdirSync(dirname(ffmpegPath), { recursive: true });
@@ -49,14 +55,20 @@ function ffmpegDownload(): Promise<Boolean> {
     let ffprobe = (await exe('ffprobe -version').catch(() => '')) as string;
 
     if (!ffprobe) {
+      if (process.platform === 'android') {
+        console.warn(
+          '如果你是termux用户, 请自行安装ffmpeg, 否则无法使用音视频功能',
+          '请运行命令: pkg install ffmpeg -y'
+        );
+        return reject(false);
+      }
       const ffprobePath = join(
         homedir(),
         '.cache',
         'ffmpeg',
         `ffprobe${process.platform === 'win32' ? '.exe' : ''}`
       );
-      const platform =
-        process.platform == 'android' ? 'linux' : process.platform;
+      const platform = process.platform;
       if (!existsSync(ffprobePath)) {
         console.log('开始下载ffprobe');
         mkdirSync(dirname(ffprobePath), { recursive: true });
